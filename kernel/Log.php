@@ -1,15 +1,30 @@
 <?php
 
 /**
+ * Class Log
+ *
  * Created by PhpStorm.
  * User: Leonardo Vilarinho
  * Date: 12/07/2016
  * Time: 16:30
  */
+
 class Log
 {
+    /**
+     * Atributos privados
+     * @var string - diretório onde se armazenará arquivos de log
+     */
     private static $dir = 'logs/';
 
+    /**
+     * Registra um novo log, o log padrao é mysql_errors, onde são salvos os erros do banco de dados
+     * automaticamente é pego o horário do log, ip que o executou e adicionado no arquivo do log
+     * com a mensagem passado por parametro.
+     *
+     * @param $msg - mensagem do log a ser salvo
+     * @param string $archive - arquivo de log a ser adicionada a mensagem
+     */
     public static function register($msg, $archive = 'mysql_errors')
     {
         if(Settings::get('logs'))
