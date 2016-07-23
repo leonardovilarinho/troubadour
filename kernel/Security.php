@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Class Security
+ *
  * Created by PhpStorm.
  * User: Leonardo Vilarinho
  * Date: 08/07/2016
@@ -8,6 +10,10 @@
  */
 abstract class Security
 {
+    /**
+     * Desliga ou liga a exibição de mensagens de erro de acordo com a variavel de configuração que
+     * indica se solução está ou não em desenvolvimento.
+     */
     public static function errors()
     {
         if(Settings::get('deployment') === true)
