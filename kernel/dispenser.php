@@ -6,8 +6,24 @@
  * Time: 22:05
  */
 
+/**
+ * Resgata parametros da URL, separa controller de method, verificando também se o link
+ * representa um alias, se representar pega o controlador e metodo do alias, se não pega
+ * o padrao do link (site.com/controlador/metodo/parametros). Por fim resgata os demais parametros
+ * colocando-o em array para serem usados no controlador.
+ *
+ * Exemplo:
+ * URL -> site.com/pessoas/editar/51
+ * Resultado do script será:
+ *      $_GET['controller'] = 'pessoas'
+ *      $_GET['method'] = 'editar'
+ *      $_GET['params'] = array(0 => 51)
+ *
+ */
+
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 unset($_GET['url']);
+
 if(!empty($url))
 {
     $params = explode('/', $url);
