@@ -14,7 +14,7 @@
     errorPassword = "Password must be 8 to 15 characters"
 [register]
     title = "register"
-    BTN = "Register"
+    btn = "Register"
     error = "error registering user"
 [book]
     details = "Details of book"
