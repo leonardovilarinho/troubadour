@@ -9,35 +9,69 @@
 
 class Criteria
 {
-    private $values = array();
-    private $where = "";
-    private $order = "";
-    private $limit = "";
-    private $signs = array('=', '!=', '<', '>', '<=', '>=', '<>', 'LIKE');
+    /**
+     * Atributos privados
+     */
+    private $values = array(); // valores do bind a serem executados por Database
+    private $where = ""; // string montada de uma condição WHERE
+    private $order = ""; // string contendo a ordem da SQL quando informada
+    private $limit = ""; // string contendo o limite quando informado
+    private $signs = array('=', '!=', '<', '>', '<=', '>=', '<>', 'LIKE'); // arrray de sinais
 
-    private $tables = "";
-    private $select = "*";
+    private $tables = ""; // string com tabelas atuais do criteria
+    private $select = "*"; // todas colunas a serem exibidas
 
+    /**
+     * Armazena na variavel select uma string com os argumentos passados, ja no formato de uma
+     * SQL.
+     */
     public function displays()
     {
         $this->select = $this->dispatch(func_get_args());
     }
 
+    /**
+     * Faz o mesmo que o método displays, só que com as tabelas a serem usadas nessa criteria,
+     * formata para ser colocada na SQL resultante
+     */
     public function tables()
     {
         $this->tables = $this->dispatch(func_get_args());
     }
 
+    /**
+     * Adiciona uma condição OR na SQL atual, o método apenas chama o build
+     * passando os parametros recebidos e a tag OR.
+     *
+     * @param $column - coluna a comparar
+     * @param $sign - sinal de comparação
+     * @param $value - valor a ser comaparado
+     */
     public function _or($column, $sign, $value)
     {
         $this->build($column, $sign, $value, 'OR');
     }
 
+    /**
+     * Adiciona uma condição AND na SQL atual, o método apenas chama o build
+     * passando os parametros recebidos e a tag AND.
+     *
+     * @param $column - coluna a comparar
+     * @param $sign - sinal de comparação
+     * @param $value - valor a ser comaparado
+     */
     public function _and($column, $sign, $value)
     {
         $this->build($column, $sign, $value, 'AND');
     }
 
+    /**
+     * Adiciona um limite de resutaldas na SQL, onde pode ser informad um limit simples
+     * ou uma origem ou fim para esssa selação.
+     *
+     * @param $limit - limite simples, informando quantos deveram ser retornados
+     * @param null $home - inicio a ser buscado o limite
+     */
     public function limit($limit, $home = null)
     {
         if(filter_var($limit, FILTER_VALIDATE_INT))
@@ -49,6 +83,12 @@ class Criteria
         }
     }
 
+    /**
+     * Define uma ordem para SQL seguir, informado a coluna da tabela e o sinal de ordenação.
+     *
+     * @param string $column - coluna do banco
+     * @param string $order - +/- indicando a ordem de listagem
+     */
     public function order($column = 'id', $order = '+')
     {
         if($order === '+')
@@ -66,6 +106,15 @@ class Criteria
         return mb_substr($var, 0, -1) . " ";
     }
 
+    /**
+     * Adiciona elementos na SQL, na where, fazendo controle de quando é um bind ou é comparação
+     * entre colunas de tabelas distintas.
+     *
+     * @param $column - coluna a ser inserida no WHERE
+     * @param $sign - sinal a ser inserido no WHERE
+     * @param $value - valor para a comparação
+     * @param $text - tipo de condição AND/OR
+     */
     private function build($column, $sign, $value, $text)
     {
         $sign = mb_strtoupper($sign);
@@ -89,6 +138,10 @@ class Criteria
 
         }
     }
+
+    /**
+     * Getters e Setters
+     */
 
     /**
      * @return string
@@ -131,6 +184,8 @@ class Criteria
     }
 
     /**
+     * Retorna array de valores retirando o . em chaves que tem tabela.coluna
+     * 
      * @return array
      */
     public function getValues()
