@@ -8,6 +8,6 @@
  */
 //Relationships::set("Daddy", array("People"));
 
-Relationships::set("Book", array("User"));
+Relationships::set("Book", array("User", "Chapter"));
 
 Relationships::set("Chapter", array("Book"));
