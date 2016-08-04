@@ -13,7 +13,7 @@ Settings::set('ignoreErrors', false);
 
 Settings::set("dbhost", "localhost");
 Settings::set("dbuser", "root");
-Settings::set("dbpassword", "");
+Settings::set("dbpassword", "sim-605");
 Settings::set("dbname", "bookcase");
 
 Settings::set("langExtension", ".lang");

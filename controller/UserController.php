@@ -102,6 +102,13 @@ class UserController extends Controller
         {
             if($user->insert())
                 $this->to('user', 'login');
+            else
+            {
+                $this->addVar('error', Language::get('global')['error']);
+                $this->noTemplate();
+                $this->view("/", "register");
+                $this->display();
+            }
         }
 
 
