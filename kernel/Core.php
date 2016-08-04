@@ -14,7 +14,7 @@ class Core
         "Settings", "Template", "View", "Session", "Security", "Log", "Saved"
     );
     private $util = array(
-        "Criteria", "Language", "Pager", "Cookies", "ValidatePost", "Post"
+        "Criteria", "Language", "Pager", "Cookies", "ValidatePost", "Post", "CriteriaBuilder"
     );
 
     private $controller = null;
