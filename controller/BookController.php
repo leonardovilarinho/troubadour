@@ -15,12 +15,12 @@ class BookController extends Controller
             $this->addVar('book', $this->param(0))->title(Language::get('book')['details']);
 
             $ch = new Chapter();
-            $c = new Criteria();
-            $c->tables('chapters', 'books');
-            $c->displays('chapters.*');
-            $c->_and('chapters.book', '=', $this->param(0));
-            $c->_and('books.user', '=', Session::get('user'));
-            $c->_and('chapters.book', '=', 'books.id');
+            $c = new Criteria()
+                ->tables('chapters', 'books')
+                ->displays('chapters.*')
+                ->_and('chapters.book', '=', $this->param(0))
+                ->_and('books.user', '=', Session::get('user'))
+                ->_and('chapters.book', '=', 'books.id');
 
             $this->addVar('chapters', $ch->listAll(new Pager(5, $ch->count($c)), $c))->display();
         }
@@ -32,9 +32,10 @@ class BookController extends Controller
     {
         $this->title(Language::get('book')['list']);
         $b = new Book();
-        $c = new Criteria();
-        $c->tables('books');
-        $c->_and('user', '=', Session::get('user'));
+        $c = new Criteria()
+            ->tables('books')
+            ->_and('user', '=', Session::get('user'));
+
         $p = new Pager(5, $b->count($c));
         $this->addVar('books', $b->listAll($p, $c))->display();
     }
@@ -66,10 +67,10 @@ class BookController extends Controller
     {
         $book = new Book();
 
-        $c = new Criteria();
-        $c->tables('books');
-        $c->_and('id', '=', $this->param(0));
-        $c->_and('user', '=', Session::get('user'));
+        $c = new Criteria()
+            ->tables('books')
+            ->_and('id', '=', $this->param(0))
+            ->_and('user', '=', Session::get('user'));
 
         if($book->delete($c))
             $this->to('Book', 'list');
@@ -82,10 +83,11 @@ class BookController extends Controller
         $this->title(Language::get('book')['edit']);
         $book = new Book();
 
-        $c = new Criteria();
-        $c->tables('books');
-        $c->_and('id', '=', $this->param(0));
-        $c->_and('user', '=', Session::get('user'));
+        $c = new Criteria()
+            ->tables('books')
+            ->_and('id', '=', $this->param(0))
+            ->_and('user', '=', Session::get('user'));
+
         if($book->get($c))
             $this->addVar('book', $book);
         else
