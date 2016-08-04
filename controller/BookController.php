@@ -12,9 +12,7 @@ class BookController extends Controller
     {
         if($this->param(0))
         {
-            $this->addVar('book', $this->param(0));
-            require_once 'model/Chapter.php';
-            $this->setTitle(Language::get('book')['details']);
+            $this->addVar('book', $this->param(0))->title(Language::get('book')['details']);
 
             $ch = new Chapter();
             $c = new Criteria();
@@ -24,8 +22,7 @@ class BookController extends Controller
             $c->_and('books.user', '=', Session::get('user'));
             $c->_and('chapters.book', '=', 'books.id');
 
-            $this->addVar('chapters', $ch->listAll(new Pager(5, $ch->count($c)), $c));
-            $this->display();
+            $this->addVar('chapters', $ch->listAll(new Pager(5, $ch->count($c)), $c))->display();
         }
         else
             Errors::display(Language::get('global')['error'], $_SERVER['REQUEST_URI']);
@@ -33,20 +30,18 @@ class BookController extends Controller
 
     public function listDeed()
     {
-        $this->setTitle(Language::get('book')['list']);
+        $this->title(Language::get('book')['list']);
         $b = new Book();
         $c = new Criteria();
         $c->tables('books');
         $c->_and('user', '=', Session::get('user'));
         $p = new Pager(5, $b->count($c));
-        $this->addVar('books', $b->listAll($p, $c));
-        $this->display();
+        $this->addVar('books', $b->listAll($p, $c))->display();
     }
 
     public function createDeed()
     {
-        $this->setTitle(Language::get('book')['create']);
-        $this->display();
+        $this->title(Language::get('book')['create'])->display();
     }
     
     public function createPosted()
@@ -84,7 +79,7 @@ class BookController extends Controller
 
     public function editDeed()
     {
-        $this->setTitle(Language::get('book')['edit']);
+        $this->title(Language::get('book')['edit']);
         $book = new Book();
 
         $c = new Criteria();
