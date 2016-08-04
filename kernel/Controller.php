@@ -53,8 +53,8 @@ abstract class Controller
             $_POST[$key] = $value;
 
         unset($_SESSION['post_backup']);
-        $this->view['dir'] = $_GET['controller'];
-        $this->view['archive'] = $_GET['method'];
+        $this->view['dir'] = mb_strtolower($_GET['controller']);
+        $this->view['archive'] = mb_strtolower($_GET['method']);
 
         if(isset($_GET['params']))
         {            $this->params = $_GET['params'];
