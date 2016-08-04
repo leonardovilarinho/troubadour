@@ -28,6 +28,7 @@ class Criteria
     public function displays()
     {
         $this->select = $this->dispatch(func_get_args());
+        return $this;
     }
 
     /**
@@ -37,6 +38,7 @@ class Criteria
     public function tables()
     {
         $this->tables = $this->dispatch(func_get_args());
+        return $this;
     }
 
     /**
@@ -50,6 +52,7 @@ class Criteria
     public function _or($column, $sign, $value)
     {
         $this->build($column, $sign, $value, 'OR');
+        return $this;
     }
 
     /**
@@ -63,6 +66,7 @@ class Criteria
     public function _and($column, $sign, $value)
     {
         $this->build($column, $sign, $value, 'AND');
+        return $this;
     }
 
     /**
@@ -81,6 +85,7 @@ class Criteria
             else
                 $this->limit = " LIMIT {$limit} ";
         }
+        return $this;
     }
 
     /**
@@ -95,6 +100,7 @@ class Criteria
             $this->order = " ORDER BY {$column} ASC ";
         else if($order === '-')
             $this->order = " ORDER BY {$column} DESC ";
+        return $this;
     }
 
     private function dispatch($param)
