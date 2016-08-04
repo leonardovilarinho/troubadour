@@ -115,10 +115,14 @@ abstract class Controller
     protected function to($controller, $method, $attributes = array())
     {
         $attr = "";
-        if(!empty($attributes) and is_array($attributes))
+        if(is_array($attributes))
             $attr = implode("/", $attributes);
         else
-            $attr = $attributes;
+            if(!empty($attributes))
+                $attr = $attributes;
+        $controller = mb_strtolower($controller);
+        $method = mb_strtolower($method);
+        $attr = mb_strtolower($attr);
         header("Location:" . DOMAIN . "/{$controller}/{$method}/{$attr}");
     }
 
