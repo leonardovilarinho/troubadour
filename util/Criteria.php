@@ -22,6 +22,14 @@ class Criteria
     private $select = "*"; // todas colunas a serem exibidas
 
     /**
+    * Retorna ele mesmo para realizar encadeamento
+    */
+    public function __construct()
+    {
+        return $this;
+    }
+
+    /**
      * Armazena na variavel select uma string com os argumentos passados, ja no formato de uma
      * SQL.
      */
