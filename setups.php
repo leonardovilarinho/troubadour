@@ -7,7 +7,7 @@
  */
 date_default_timezone_set("America/Sao_Paulo");
 
-Settings::set('logs', true);
+Settings::set('logs', false);
 Settings::set('deployment', true);
 Settings::set('ignoreErrors', false);
 

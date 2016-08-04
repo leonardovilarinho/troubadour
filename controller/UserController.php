@@ -13,9 +13,7 @@ class UserController extends Controller
     {
         if(!Session::get('user'))
         {
-            $this->noTemplate();
-            $this->view("/", "login");
-            $this->display();
+            $this->noTemplate()->view('/', 'login')->display();
         }
         else
             $this->to('book', 'list');
@@ -37,10 +35,7 @@ class UserController extends Controller
         }
         catch (Exception $e)
         {
-            $this->addVar('error', $e->getMessage());
-            $this->noTemplate();
-            $this->view("/", "login");
-            $this->display();
+            $this->addVar('error', $e->getMessage())->noTemplate()->view("/", "login")->display();
             exit();
         }
         $c = new Criteria();
@@ -60,16 +55,12 @@ class UserController extends Controller
         {
             $this->addVar('error', Language::get('login')['error']);
         }
-        $this->noTemplate();
-        $this->view("/", "login");
-        $this->display();
+        $this->noTemplate()->view("/", "login")->display();
     }
 
     public function registerDeed()
     {
-        $this->noTemplate();
-        $this->view("/", "register");
-        $this->display();
+        $this->noTemplate()->view("/", "register")->display();
     }
 
     public function registerPosted()
@@ -81,10 +72,11 @@ class UserController extends Controller
         }
         catch (Exception $e)
         {
-            $this->addVar('error', $e->getMessage());
-            $this->noTemplate();
-            $this->view("/", "register");
-            $this->display();
+            $this
+                ->addVar('error', $e->getMessage())
+                ->noTemplate()
+                ->view("/", "register")
+                ->display();
             exit();
         }
         $c = new Criteria();
@@ -93,10 +85,10 @@ class UserController extends Controller
 
         if($user->count($c) > 0)
         {
-            $this->addVar('error', Language::get('register')['exists']);
-            $this->noTemplate();
-            $this->view("/", "register");
-            $this->display();
+            $this->addVar('error', Language::get('register')['exists'])
+                ->noTemplate()
+                ->view("/", "register")
+                ->display();
         }
         else
         {
@@ -104,10 +96,10 @@ class UserController extends Controller
                 $this->to('user', 'login');
             else
             {
-                $this->addVar('error', Language::get('global')['error']);
-                $this->noTemplate();
-                $this->view("/", "register");
-                $this->display();
+                $this->addVar('error', Language::get('global')['error'])
+                    ->noTemplate()
+                    ->view("/", "register")
+                    ->display();
             }
         }
 
