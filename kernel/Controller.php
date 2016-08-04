@@ -32,16 +32,6 @@ abstract class Controller
     private $hasTemplate = true;
     private $params = array();
 
-    protected function genetare()
-    {
-        Session::set('token', crypt(md5(time())));
-    }
-
-    protected function token()
-    {
-        return Session::get('token');
-    }
-
     /**
      * Controller constructor.
      * Pega um diretorio e arquivo padrao de visao e cria um novo template passando essa classe.
@@ -83,6 +73,7 @@ abstract class Controller
     protected function noTemplate()
     {
         $this->hasTemplate = false;
+        return $this;
     }
     
     /**
@@ -93,6 +84,7 @@ abstract class Controller
     protected function addLink($link)
     {
         array_push($this->links, $link);
+        return $this;
     }
 
     /**
@@ -103,6 +95,7 @@ abstract class Controller
     protected function addScript($script)
     {
         array_push($this->scripts, $script);
+        return $this;
     }
 
     /**
@@ -138,6 +131,7 @@ abstract class Controller
             $this->view['dir'] = $directory;
         if(!is_null($archive))
             $this->view['archive'] = $archive;
+        return $this;
     }
 
     /**
@@ -185,9 +179,10 @@ abstract class Controller
      *
      * @param $title - titulo da pagina
      */
-    protected function setTitle($title)
+    protected function title($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -199,6 +194,7 @@ abstract class Controller
     protected function addVar($key, $value)
     {
         $this->variables[$key] = $value;
+        return $this;
     }
 
     /**
@@ -232,7 +228,7 @@ abstract class Controller
      */
     protected function error($title = "Error", $msg = null)
     {
-        $this->setTitle($title);
+        $this->title($title);
         $this->addVar('error', $msg);
         $this->view("/", "error");
         $this->display();
