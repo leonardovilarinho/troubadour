@@ -11,8 +11,7 @@ class ChapterController extends Controller
 
     public function createDeed()
     {
-        $this->setTitle(Language::get('chapter')['create']);
-        $this->display();
+        $this->title(Language::get('chapter')['create'])->display();
     }
 
     public function createPosted()
@@ -60,7 +59,7 @@ class ChapterController extends Controller
 
     public function editDeed()
     {
-        $this->setTitle(Language::get('chapter')['edit']);
+        $this->title(Language::get('chapter')['edit']);
         $chapter = new Chapter();
 
         $c = new Criteria();
