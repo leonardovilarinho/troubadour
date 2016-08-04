@@ -13,6 +13,6 @@ class ErrorController extends Controller
         if(Errors::link())
             $this->addVar('link', Errors::link());
         $this->error('Ooopss..', Errors::last());
-
+        exit();
     }
 }
