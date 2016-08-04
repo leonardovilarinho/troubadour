@@ -25,7 +25,7 @@ class Core
         $this->importKernelUtil();
         $this->declareVars();
 
-        $this->controller = mb_strtolower(trim($_GET['controller']));
+        $this->controller = ucfirst(mb_strtolower(trim($_GET['controller'])));
         $this->method = mb_strtolower(trim($_GET['method']));
 
         if($this->defineAccess())
@@ -100,26 +100,21 @@ class Core
             $_GET['controller'] = $model = explode('/', $alias)[0];
             $_GET['method'] = $this->method = explode('/', $alias)[1];
 
-            $this->controller = $model."Controller";
+            $this->controller = ucfirst($model) . "Controller";
         }
         else
         {
             $model = $this->controller;
-            $this->controller .= "Controller";
+            $this->controller = ucfirst($model) . "Controller";
         }
 
         if(file_exists("controller/{$this->controller}.php"))
         {
-            $rel = Relationships::get($model);
+            $this->importRels(Relationships::get('*'));
+            $this->importRels(Relationships::get($model));
 
-            if(is_array($rel))
-                foreach ($rel as $value)
-                    require_once "model/" . "{$value}.php";
-            else if(!empty($rel))
-                require_once "model/" . "{$rel}.php";
-
-            if(file_exists("model/{$model}.php"))
-                require_once "model/" . "{$model}.php";
+            if(file_exists("model/" . ucfirst($model) . ".php"))
+                require_once "model/" . ucfirst($model) . ".php";
 
             require_once "controller" . "/{$this->controller}.php";
             $instance = new $this->controller();
@@ -139,5 +134,14 @@ class Core
         }
         else
             Errors::display("Página não encontrada");
+    }
+
+    private function importRels($rel)
+    {
+        if(is_array($rel))
+            foreach ($rel as $value)
+                require_once "model/" . ucfirst($value) . ".php";
+        else if(!empty($rel))
+            require_once "model/" . ucfirst($rel) . ".php";
     }
 }

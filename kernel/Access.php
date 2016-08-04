@@ -65,6 +65,8 @@ abstract class Access
      */
     public static function checkPrivate($user, $controller, $method)
     {
+        $controller = mb_strtolower($controller);
+        $method = mb_strtolower($method);
         if(array_key_exists($user, self::$private))
         {
             if(is_array(self::$private[$user]))
@@ -111,6 +113,8 @@ abstract class Access
      */
     public static function checkPublic($controller, $method)
     {
+        $controller = mb_strtolower($controller);
+        $method = mb_strtolower($method);
         if(array_key_exists($controller, self::$public))
         {
             if(is_array(self::$public[$controller]))
