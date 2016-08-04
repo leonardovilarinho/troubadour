@@ -40,10 +40,10 @@ class ChapterController extends Controller
         if($book->getUser()->getId() == Session::get('user'))
         {
             $chapter = new Chapter();
-            $c = new Criteria();
-            $c->tables('chapters');
-            $c->_and('chapters.id', '=', $this->param(0));
-            $c->_and('chapters.book', '=', $this->param(1));
+            $c = new Criteria()
+                ->tables('chapters')
+                ->_and('chapters.id', '=', $this->param(0))
+                ->_and('chapters.book', '=', $this->param(1));
 
             if($chapter->delete($c))
                 $this->to('Book', 'details',  $this->param(1));
@@ -62,12 +62,12 @@ class ChapterController extends Controller
         $this->title(Language::get('chapter')['edit']);
         $chapter = new Chapter();
 
-        $c = new Criteria();
-        $c->tables('chapters', 'users', 'books');
-        $c->_and('chapters.id', '=', $this->param(0));
-        $c->_and('users.id', '=', Session::get('user'));
-        $c->_and('chapters.book', '=', $this->param(1));
-        $c->_and('books.id', '=', 'chapters.book');
+        $c = new Criteria()
+            ->tables('chapters', 'users', 'books')
+            ->_and('chapters.id', '=', $this->param(0))
+            ->_and('users.id', '=', Session::get('user'))
+            ->_and('chapters.book', '=', $this->param(1))
+            ->_and('books.id', '=', 'chapters.book');
 
         if($chapter->get($c))
             $this->addVar('chapter', $chapter);
