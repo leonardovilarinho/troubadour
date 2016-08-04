@@ -38,9 +38,9 @@ class UserController extends Controller
             $this->addVar('error', $e->getMessage())->noTemplate()->view("/", "login")->display();
             exit();
         }
-        $c = new Criteria();
-        $c->tables('users');
-        $c->_and('username', '=', $user->getUsername());
+        $c = new Criteria()
+            ->tables('users')
+            ->_and('username', '=', $user->getUsername());
 
         $user->get($c);
 
@@ -79,9 +79,9 @@ class UserController extends Controller
                 ->display();
             exit();
         }
-        $c = new Criteria();
-        $c->tables('users');
-        $c->_and('username', '=', $user->getUsername());
+        $c = new Criteria()
+            ->tables('users')
+            ->_and('username', '=', $user->getUsername());
 
         if($user->count($c) > 0)
         {
