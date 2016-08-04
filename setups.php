@@ -9,7 +9,7 @@ date_default_timezone_set("America/Sao_Paulo");
 
 Settings::set('logs', true);
 Settings::set('deployment', true);
-//Settings::set('caching', true);
+Settings::set('ignoreErrors', false);
 
 Settings::set("dbhost", "localhost");
 Settings::set("dbuser", "root");

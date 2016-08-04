@@ -19,10 +19,13 @@ abstract class Errors
      */
     public static function display($msg, $link = null)
     {
-        Errors::append($msg);
-        if(!is_null($link))
-            self::addLink($link);
-        header("Location:" . DOMAIN . '/error');
+        if(!Settings::get('ignoreErrors'))
+        {
+            Errors::append($msg);
+            if(!is_null($link))
+                self::addLink($link);
+            header("Location:" . DOMAIN . '/error');
+        }
     }
 
     /**
