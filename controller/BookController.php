@@ -15,7 +15,7 @@ class BookController extends Controller
             $this->addVar('book', $this->param(0))->title(Language::get('book')['details']);
 
             $ch = new Chapter();
-            $c = new Criteria()
+            $c = CriteriaBuilder::create()
                 ->tables('chapters', 'books')
                 ->displays('chapters.*')
                 ->_and('chapters.book', '=', $this->param(0))
@@ -32,7 +32,7 @@ class BookController extends Controller
     {
         $this->title(Language::get('book')['list']);
         $b = new Book();
-        $c = new Criteria()
+        $c = CriteriaBuilder::create()
             ->tables('books')
             ->_and('user', '=', Session::get('user'));
 
@@ -67,7 +67,7 @@ class BookController extends Controller
     {
         $book = new Book();
 
-        $c = new Criteria()
+        $c = CriteriaBuilder::create()
             ->tables('books')
             ->_and('id', '=', $this->param(0))
             ->_and('user', '=', Session::get('user'));
@@ -83,7 +83,7 @@ class BookController extends Controller
         $this->title(Language::get('book')['edit']);
         $book = new Book();
 
-        $c = new Criteria()
+        $c = CriteriaBuilder::create()
             ->tables('books')
             ->_and('id', '=', $this->param(0))
             ->_and('user', '=', Session::get('user'));

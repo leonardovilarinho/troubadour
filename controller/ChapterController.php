@@ -40,7 +40,7 @@ class ChapterController extends Controller
         if($book->getUser()->getId() == Session::get('user'))
         {
             $chapter = new Chapter();
-            $c = new Criteria()
+            $c = CriteriaBuilder::create()
                 ->tables('chapters')
                 ->_and('chapters.id', '=', $this->param(0))
                 ->_and('chapters.book', '=', $this->param(1));
@@ -62,7 +62,7 @@ class ChapterController extends Controller
         $this->title(Language::get('chapter')['edit']);
         $chapter = new Chapter();
 
-        $c = new Criteria()
+        $c = CriteriaBuilder::create()
             ->tables('chapters', 'users', 'books')
             ->_and('chapters.id', '=', $this->param(0))
             ->_and('users.id', '=', Session::get('user'))

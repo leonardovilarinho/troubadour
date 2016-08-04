@@ -38,7 +38,7 @@ class UserController extends Controller
             $this->addVar('error', $e->getMessage())->noTemplate()->view("/", "login")->display();
             exit();
         }
-        $c = new Criteria()
+        $c = CriteriaBuilder::create()
             ->tables('users')
             ->_and('username', '=', $user->getUsername());
 
@@ -79,7 +79,7 @@ class UserController extends Controller
                 ->display();
             exit();
         }
-        $c = new Criteria()
+        $c = CriteriaBuilder::create()
             ->tables('users')
             ->_and('username', '=', $user->getUsername());
 
