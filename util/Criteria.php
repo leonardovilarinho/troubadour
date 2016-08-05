@@ -205,6 +205,15 @@ class Criteria
         return $return;
     }
 
+    public function clear()
+    {
+
+        $this->values  = array(); 
+        $this->where = $this->order = $this->limit = $this->tables = ""; 
+        $this->select = "*";
+
+        return $this;
+    }
 
 
 }
