@@ -40,6 +40,7 @@ abstract class Database
     public function debug()
     {
         $this->debug = !$this->debug;
+        return $this;
     }
 
     /**
@@ -200,7 +201,7 @@ abstract class Database
                 $this->fill($result);
                 Saved::set($result);
                 Log::register("Get execute of: " . $sql. "\nIn l:" . __LINE__, "mysql_success");
-                return true;
+                return $this;
             }
             catch (Exception $e)
             {
@@ -385,7 +386,7 @@ abstract class Database
         $o = new $class();
         foreach ($data as $key => $value)
         {
-            $set = "set{$key}";
+            $set = "set" . ucfirst(str_replace('_', '', $key));
             $o->$set($row[$key]);
         }
 
@@ -398,7 +399,7 @@ abstract class Database
         unset($data['table']);
         foreach ($data as $key => $value)
         {
-            $set = "set{$key}";
+            $set = "set"  . ucfirst(str_replace('_', '', $key));
             if(isset($ob[$key]))
                 $this->object->$set($ob[$key]);
         }
