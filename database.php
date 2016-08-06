@@ -7,6 +7,7 @@
  */
 
 $table = new Table();
+
 $table
     ->database('bookcase')
     ->name('users')
@@ -42,3 +43,5 @@ $table
     ->pk('id')
     ->addFK('book', array('books', 'id'))
     ->make();
+
+//echo $table->query();
