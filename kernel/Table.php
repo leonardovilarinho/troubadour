@@ -8,7 +8,7 @@ class Table
     private $pk = array();
     private $foreign = array();
     private $autoincrement;
-
+    private $attrs = array();
     private $sql;
 
     public function database($name)
@@ -41,6 +41,7 @@ class Table
         );
 
         array_push($this->columns, $data);
+        array_push($this->attrs, $name);
         return $this;
     }
 
@@ -90,12 +91,100 @@ class Table
         {
             require_once "kernel/DefaultModel.php";
             $d_model = new DefaultModel();
+
             if($d_model->sql("CREATE SCHEMA IF NOT EXISTS `{$this->database}` DEFAULT CHARACTER SET utf8mb4;", array(), false) !== false)
             {
-                if($d_model->sql($this->query(), array(), false) === false)
+                $d_model->sql("USE {$this->database};", array(), false);
+                if($d_model->sql("SHOW TABLES LIKE '{$this->name}';", array(), false) > 0)
                 {
-                    echo 'Erro ao conectar com o banco de dados';
-                    exit();
+                    $table = $d_model->sql("DESCRIBE {$this->name};");
+
+                    $fields = array();
+                    foreach ($table as $value)
+                    {
+                        if(!in_array($value['Field'], $this->attrs))
+                            $d_model->sql("ALTER TABLE `{$this->name}` DROP `{$value['Field']}`;");
+                        else
+                            array_push($fields, $value['Field']);
+                    }
+
+                    foreach ($this->attrs as $key => $attr)
+                    {
+                        $value = $this->columns[$key];
+                        $increment = $this->defineIncrement($value);
+                        $null = $this->defineNull($value);
+                        $lenght = $this->defineLenght($value);
+                        $default = $this->defineDefault($value);
+
+
+                        if(!in_array($attr, $fields))
+                        {
+                            $d_model->sql(
+                                "ALTER TABLE `{$this->name}` ADD `{$attr}` {$value['type']}({$lenght}) {$null} {$default} {$increment} AFTER `{$this->attrs[0]}`;"
+                            );
+                        }
+                        else
+                        {
+                            if(!empty($increment))
+                            {
+                                if($table[array_search($attr, $fields)]['Extra'] != 'auto_increment')
+                                {
+                                    $d_model->sql
+                                    (
+                                        "ALTER TABLE `{$this->name}` ADD PRIMARY KEY(`{$attr}`);"
+                                    );
+
+                                    $d_model->sql
+                                    (
+                                        "ALTER TABLE `{$this->name}` CHANGE `{$attr}` `{$attr}` {$value['type']}({$lenght}) {$null} {$default} {$increment};"
+                                    );
+                                }
+                            }
+                            $null2 = ($null == "NULL") ? "YES" : "NO";
+                            if($table[array_search($attr, $fields)]['Null'] != $null2)
+                            {
+                                $d_model->sql
+                                (
+                                    "ALTER TABLE `{$this->name}` CHANGE `{$attr}` `{$attr}` {$value['type']}({$lenght}) {$null} {$default} {$increment};"
+                                );
+                            }
+
+                            if(explode("(", $table[array_search($attr, $fields)]['Type'])[0] != $value['type'])
+                            {
+                                $d_model->sql
+                                (
+                                    "ALTER TABLE `{$this->name}` CHANGE `{$attr}` `{$attr}` {$value['type']}({$lenght}) {$null} {$default} {$increment};"
+                                );
+                            }
+
+                            if(mb_substr(explode("(", $table[array_search($attr, $fields)]['Type'])[1], 0, -1) != $lenght)
+                            {
+                                $d_model->sql
+                                (
+                                    "ALTER TABLE `{$this->name}` CHANGE `{$attr}` `{$attr}` {$value['type']}({$lenght}) {$null} {$default} {$increment};"
+                                );
+                            }
+
+                            if($table[array_search($attr, $fields)]['Default'] != trim(str_replace("DEFAULT", "", $value['default'])))
+                            {
+                                $d_model->sql
+                                (
+                                    "ALTER TABLE `{$this->name}` CHANGE `{$attr}` `{$attr}` {$value['type']}({$lenght}) {$null} {$default} {$increment};"
+                                );
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    if($d_model->sql($this->query(), array(), false) === false)
+                    {
+                        echo 'Erro ao conectar com o banco de dados';
+                        exit();
+                    }
+                    else
+                        echo "ok";
                 }
             }
             else
@@ -118,7 +207,7 @@ class Table
     public function clear()
     {
         $this->database = $this->name = $this->autoincrement = $this->sql = '';
-        $this->columns = $this->foreign = $this->pk = array();
+        $this->columns = $this->foreign = $this->pk = $this->attrs = $this->describe = array();
 
         return $this;
     }
@@ -127,36 +216,57 @@ class Table
     {
         foreach ($this->columns as $value)
         {
-            $null = ($value['null']) ? "NULL" : "NOT NULL";
-            $increment = ($this->autoincrement == $value['name']) ? "AUTO_INCREMENT" : "";
-            if($value['lenght'] == 0)
-            {
-                switch (trim(mb_strtolower($value['type'])))
-                {
-                    case 'varchar':
-                        $this->sql .= "`{$value['name']}` {$value['type']}(255) {$null} {$increment} , ";
-                    break;
-                    case 'char':
-                        $this->sql .= "`{$value['name']}` {$value['type']}(255) {$null} {$increment} , ";
-                    break;
-                    case 'int':
-                        $this->sql .= "`{$value['name']}` {$value['type']}(11) {$null} {$increment} , ";
-                    break;
-                    default:
-                        $this->sql .= "`{$value['name']}` {$value['type']} {$null} {$increment} , ";
-                    break;
-                }
-            }
-            else
-                $this->sql .= "`{$value['name']}` {$value['type']}({$value['lenght']}) {$null} {$increment} , ";
+            $null = $this->defineNull($value);
+            $increment = $this->defineIncrement($value);
+            $this->sql .= "`{$value['name']}` {$value['type']}({$this->defineLenght($value)}) {$null} {$increment} , ";
         }
+    }
+
+    private function defineDefault($value)
+    {
+        return (!empty($value['default'])) ? "DEFAULT '{$value['default']}'" : '';
+    }
+
+    private function defineNull($value)
+    {
+        return ($value['null']) ? "NULL" : "NOT NULL";
+    }
+
+    private function defineIncrement($value)
+    {
+        return ($this->autoincrement == $value['name']) ? "AUTO_INCREMENT" : "";
+    }
+
+    private function defineLenght($value)
+    {
+        if($value['lenght'] == 0)
+        {
+            switch (trim(mb_strtolower($value['type'])))
+            {
+                case 'varchar':
+                    return 255;
+                    break;
+                case 'char':
+                    return 255;
+                    break;
+                case 'int':
+                    return 11;
+                    break;
+                default:
+                    return '';
+                    break;
+            }
+        }
+        else
+            return $value['lenght'];
     }
 
     private function generatePK()
     {
+        $this->sql = mb_substr($this->sql, 0, -2);
         if(!empty($this->pk))
         {
-            $this->sql .= "PRIMARY KEY(";
+            $this->sql .= ", PRIMARY KEY(";
             foreach ($this->pk as $value)
                 $this->sql .= "`{$value}`,";
             $this->sql = mb_substr($this->sql, 0, -1);
