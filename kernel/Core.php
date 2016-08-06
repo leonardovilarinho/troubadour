@@ -36,8 +36,7 @@ class Core
         if($this->defineAccess())
             $this->callLink();
         else
-            echo "oi1";
-            //Errors::display("Acesso Negado!");
+            Errors::display("Acesso Negado!");
     }
 
     private function disableUtil()
@@ -140,12 +139,10 @@ class Core
             }
 
             else
-                echo "oi2";
-                //Errors::display("Página não encontrada");
+                Errors::display("Página não encontrada");
         }
         else
-            echo "oi3";
-            //Errors::display("Página não encontrada");
+            Errors::display("Página não encontrada");
     }
 
     private function importRels($rel)
