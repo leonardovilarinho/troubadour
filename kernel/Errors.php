@@ -19,7 +19,7 @@ abstract class Errors
      */
     public static function display($msg, $link = null)
     {
-        if(!Settings::get('ignoreErrors'))
+        if(!Settings::get('ignoreErrors') )
         {
             Errors::append($msg);
             if(!is_null($link))

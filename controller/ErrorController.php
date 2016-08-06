@@ -10,9 +10,10 @@ class ErrorController extends Controller
 {
     public function failDeed()
     {
+        exit();
+        echo "oi";
         if(Errors::link())
             $this->addVar('link', Errors::link());
         $this->error('Ooopss..', Errors::last());
-        exit();
     }
 }
