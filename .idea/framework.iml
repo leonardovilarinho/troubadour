@@ -12,27 +12,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHP">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/libs/bootstrap/css" />
-          <root url="file://$MODULE_DIR$/libs/bootstrap/fonts" />
-          <root url="file://$MODULE_DIR$/libs/bootstrap/js" />
-          <root url="file://$MODULE_DIR$/libs/composer" />
-          <root url="file://$MODULE_DIR$/libs/font-awesome/css" />
-          <root url="file://$MODULE_DIR$/libs/font-awesome/fonts" />
-          <root url="file://$MODULE_DIR$/libs/respect/validation" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/libs/bootstrap/css" />
-          <root url="file://$MODULE_DIR$/libs/bootstrap/fonts" />
-          <root url="file://$MODULE_DIR$/libs/bootstrap/js" />
-          <root url="file://$MODULE_DIR$/libs/composer" />
-          <root url="file://$MODULE_DIR$/libs/font-awesome/css" />
-          <root url="file://$MODULE_DIR$/libs/font-awesome/fonts" />
-          <root url="file://$MODULE_DIR$/libs/respect/validation" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

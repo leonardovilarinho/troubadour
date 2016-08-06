@@ -309,7 +309,8 @@ abstract class Database
                 Log::register($e->getMessage());
             }
         }
-        return false;
+        else
+            return false;
     }
 
     public function delete($attrOrCriteria = 'id')
