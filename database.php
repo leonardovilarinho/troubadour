@@ -8,30 +8,37 @@
 
 $table = new Table();
 $table
-    ->database('mydb')
-    ->name('table1')
+    ->database('bookcase')
+    ->name('users')
     ->pk('id')
     ->autoincrement('id')
-    ->column('id', 'int', 11, false, '0')
+    ->column('id', 'int', 11, false)
+    ->column('username', 'varchar', 40, false)
+    ->column('password', 'varchar', 255, false)
+    ->make();
+$table
+    ->clear()
+    ->database('bookcase')
+    ->name('books')
+    ->pk('id')
+    ->autoincrement('id')
+    ->column('id', 'int', 11, false)
+    ->column('name', 'varchar', 100, false)
+    ->column('author', 'varchar', 50, false)
+    ->column('price', 'double', 0, false)
+    ->column('user', 'int', 0, false)
+    ->addFK('user', array('users', 'id'), 3)
     ->make();
 
 $table
     ->clear()
-    ->database('mydb')
-    ->name('table2')
-    ->pk('id')
+    ->database('bookcase')
+    ->name('chapters')
+    ->column('id', 'int', 11, false)
     ->autoincrement('id')
-    ->column('id', 'int', 11, false, '0')
-    ->make();
-
-$table
-    ->clear()
-    ->database('mydb')
-    ->name('table1_has_table2')
-    ->column('table1_id', 'int', false)
-    ->column('table2_id', 'int', false)
-    ->pk('table1_id')
-    ->pk('table2_id')
-    ->addFK('table1_id', array('table1', 'id'))
-    ->addFK('table2_id', array('table2', 'id'))
+    ->column('title', 'varchar', 100, false)
+    ->column('pages', 'int', 5, false, '1')
+    ->column('book', 'int', 11, false)
+    ->pk('id')
+    ->addFK('book', array('books', 'id'))
     ->make();
