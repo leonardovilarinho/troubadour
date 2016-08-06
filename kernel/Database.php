@@ -57,9 +57,29 @@ abstract class Database
     {
         try
         {
+            if($conn = $this->tryConnect($line, $this->database))
+                return $conn;
+            else
+                return $this->tryConnect($line);
+        }
+        catch (Exception $e)
+        {
+            Log::register($e->getMessage()."In l:" .__LINE__);
+            return false;
+        }
+
+    }
+
+    private function tryConnect($line, $dbname = null)
+    {
+
+        try
+        {
+            if(!is_null($dbname))
+                $dbname =  ';dbname=' . $dbname;
             $conn = new PDO
             (
-                'mysql:host=' . Settings::get('dbhost') . ';dbname=' . $this->database,
+                'mysql:host=' . Settings::get('dbhost') . $dbname,
                 Settings::get('dbuser'),
                 Settings::get('dbpassword'),
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
@@ -291,7 +311,7 @@ abstract class Database
         return false;
     }
 
-    public function sql($sql, $bind = array())
+    public function sql($sql, $bind = array(), $all = true)
     {
         if($this->debug)
             var_dump($sql);
@@ -307,7 +327,10 @@ abstract class Database
 
                 $prepare->execute();
                 Log::register("SQL person execute of: " . $sql . "\nIn l:" . __LINE__, "mysql_success");
-                return  $prepare->fetchAll(PDO::FETCH_ASSOC);
+                if($all)
+                    return  $prepare->fetchAll(PDO::FETCH_ASSOC);
+                else
+                    return  $prepare->rowCount();
             }
             catch (Exception $e)
             {
