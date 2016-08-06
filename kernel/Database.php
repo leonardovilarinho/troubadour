@@ -72,28 +72,32 @@ abstract class Database
 
     private function tryConnect($line, $dbname = null)
     {
-
-        try
+        if(is_null($this->connection))
         {
-            if(!is_null($dbname))
-                $dbname =  ';dbname=' . $dbname;
-            $conn = new PDO
-            (
-                'mysql:host=' . Settings::get('dbhost') . $dbname,
-                Settings::get('dbuser'),
-                Settings::get('dbpassword'),
-                array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
-            );
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conn->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);
-            Log::register("Is connect \nIn l:".$line, "mysql_success");
-            return $conn;
+            try
+            {
+                if(!is_null($dbname))
+                    $dbname =  ';dbname=' . $dbname;
+                $conn = new PDO
+                (
+                    'mysql:host=' . Settings::get('dbhost') . $dbname,
+                    Settings::get('dbuser'),
+                    Settings::get('dbpassword'),
+                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+                );
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $conn->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);
+                Log::register("Is connect \nIn l:".$line, "mysql_success");
+                return $conn;
+            }
+            catch (Exception $e)
+            {
+                Log::register($e->getMessage()."In l:" .__LINE__);
+                return false;
+            }
         }
-        catch (Exception $e)
-        {
-            Log::register($e->getMessage()."In l:" .__LINE__);
-            return false;
-        }
+        else
+            return $this->connection;
 
     }
 
@@ -326,6 +330,7 @@ abstract class Database
                         $prepare->bindValue(":$key", $value);
 
                 $prepare->execute();
+
                 Log::register("SQL person execute of: " . $sql . "\nIn l:" . __LINE__, "mysql_success");
                 if($all)
                     return  $prepare->fetchAll(PDO::FETCH_ASSOC);
@@ -334,7 +339,7 @@ abstract class Database
             }
             catch (Exception $e)
             {
-                Log::register($e->getMessage());
+                Log::register("Error SQL person:" . $e->getMessage() ."\nSQL:{$sql}" . "\nIn l:" . __LINE__);
             }
         }
         else
