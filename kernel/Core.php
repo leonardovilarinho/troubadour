@@ -101,9 +101,10 @@ class Core
     {
         $alias = Alias::check($this->controller);
         if($alias != false)
-        {
-            $_GET['controller'] = $model = explode('/', $alias)[0];
-            $_GET['method'] = $this->method = explode('/', $alias)[1];
+
+            $explode = explode('/', $alias);
+            $_GET['controller'] = $model = $explode[0];
+            $_GET['method'] = $this->method = $explode[1];
 
             $this->controller = ucfirst($model) . "Controller";
         }
