@@ -21,8 +21,13 @@ abstract class Database
     protected $object = null;
     private $debug = false;
 
-    public function __construct($table, $pk = "id")
+    private $database;
+
+    public function __construct($table, $pk = "id", $database = null)
     {
+        if(is_null($database))
+            $this->database = Settings::get("default_dbname");
+
         $rel = Relationships::get(get_called_class());
 
         if(is_array($rel))
@@ -54,7 +59,7 @@ abstract class Database
         {
             $conn = new PDO
             (
-                'mysql:host=' . Settings::get('dbhost') . ';dbname=' . Settings::get('dbname'),
+                'mysql:host=' . Settings::get('dbhost') . ';dbname=' . $this->database,
                 Settings::get('dbuser'),
                 Settings::get('dbpassword'),
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")

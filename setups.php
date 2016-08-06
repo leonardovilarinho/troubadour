@@ -11,9 +11,10 @@ Settings::set('logs', false);
 Settings::set('deployment', true);
 Settings::set('ignoreErrors', false);
 
-Settings::set("default_dbhost", "localhost");
-Settings::set("default_dbuser", "root");
-Settings::set("default_dbpassword", "sim-605");
+Settings::set("dbhost", "localhost");
+Settings::set("dbuser", "root");
+Settings::set("dbpassword", "sim-605");
+
 Settings::set("default_dbname", "bookcase");
 
 Settings::set("langExtension", ".lang");
