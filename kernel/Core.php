@@ -11,7 +11,7 @@ class Core
 {
     private $kernel = array(
         "Errors", "Access", "Controller", "Database", "Relationships", "Alias",
-        "Settings", "Template", "View", "Session", "Security", "Log", "Saved"
+        "Settings", "Template", "View", "Session", "Security", "Log", "Saved", "Table"
     );
     private $util = array(
         "Criteria", "Language", "Pager", "Cookies", "ValidatePost", "Post", "CriteriaBuilder"
@@ -22,6 +22,11 @@ class Core
 
     public function __construct()
     {
+        $path = dirname($_SERVER["SCRIPT_NAME"]);
+        if ($path === '/')
+            $path = '';
+        define('DOMAIN', $path);
+
         $this->importKernelUtil();
         $this->declareVars();
 
@@ -31,7 +36,8 @@ class Core
         if($this->defineAccess())
             $this->callLink();
         else
-            Errors::display("Acesso Negado!");
+            echo "oi1";
+            //Errors::display("Acesso Negado!");
     }
 
     private function disableUtil()
@@ -58,6 +64,9 @@ class Core
 
         Session::create();
         require_once "setups.php";
+        if(Settings::get('deployment'))
+            require_once "database.php";
+
         Security::errors();
         require_once "relations.php";
         $this->disableUtil();
@@ -70,10 +79,6 @@ class Core
 
     private function declareVars()
     {
-        $path = dirname($_SERVER["SCRIPT_NAME"]);
-        if ($path === '/')
-            $path = '';
-        define('DOMAIN', $path);
         Session::set('initFramework', true);
 
         $_GET['controller'] = (isset($_GET['controller'])) ? $_GET['controller'] : Settings::get('initialController');
@@ -128,12 +133,18 @@ class Core
                 $this->method = "{$this->method}Deed";
 
             if(method_exists($instance, $this->method))
+            {
                 $instance->{$this->method}();
+                exit();
+            }
+
             else
-                Errors::display("Página não encontrada");
+                echo "oi2";
+                //Errors::display("Página não encontrada");
         }
         else
-            Errors::display("Página não encontrada");
+            echo "oi3";
+            //Errors::display("Página não encontrada");
     }
 
     private function importRels($rel)
