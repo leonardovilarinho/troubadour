@@ -36,7 +36,8 @@ class Core
         if($this->defineAccess())
             $this->callLink();
         else
-            Errors::display("Acesso Negado!");
+            echo "oi1";
+            //Errors::display("Acesso Negado!");
     }
 
     private function disableUtil()
@@ -100,7 +101,7 @@ class Core
     {
         $alias = Alias::check($this->controller);
         if($alias != false)
-
+        {
             $explode = explode('/', $alias);
             $_GET['controller'] = $model = $explode[0];
             $_GET['method'] = $this->method = $explode[1];
@@ -139,10 +140,12 @@ class Core
             }
 
             else
-                Errors::display("Página não encontrada");
+                echo "oi2";
+                //Errors::display("Página não encontrada");
         }
         else
-            Errors::display("Página não encontrada");
+            echo "oi3";
+            //Errors::display("Página não encontrada");
     }
 
     private function importRels($rel)
