@@ -48,9 +48,9 @@ class Table
     {
         if($action === 2)
             $action = 'SET NULL';
-        elseif($action === 2)
+        elseif($action === 3)
             $action = 'CASCADE';
-        elseif($action === 2)
+        elseif($action === 4)
             $action = 'RESTRICT';
         else
             $action = 'NO ACTION';
@@ -76,8 +76,7 @@ class Table
 
     public function query()
     {
-        $this->sql = "CREATE SCHEMA IF NOT EXISTS `{$this->database}` DEFAULT CHARACTER SET utf8 ; USE `mydb` ; ";
-        $this->sql .= "CREATE TABLE IF NOT EXISTS `{$this->database}`.`{$this->name}` (";
+        $this->sql = "CREATE TABLE IF NOT EXISTS `{$this->database}`.`{$this->name}` (";
         $this->generateColumns();
         $this->generatePK();
         $this->generateForeign();
@@ -91,11 +90,22 @@ class Table
         {
             require_once "kernel/DefaultModel.php";
             $d_model = new DefaultModel();
-            if($d_model->sql($this->query()) === false)
+            if($d_model->sql("CREATE SCHEMA IF NOT EXISTS `{$this->database}` DEFAULT CHARACTER SET utf8mb4;", array(), false) !== false)
             {
-                echo 'Erro ao conectar com o banco de dados';
-                exit();
+                if($d_model->sql($this->query(), array(), false) === false)
+                {
+                    echo 'Erro ao conectar com o banco de dados';
+                    exit();
+                }
             }
+            else
+            {
+
+                echo 'Erro ao criar o banco de dados';
+                exit();
+
+            }
+
 
         }
         catch (Exception $e)
@@ -118,8 +128,27 @@ class Table
         foreach ($this->columns as $value)
         {
             $null = ($value['null']) ? "NULL" : "NOT NULL";
-            $increment = ($this->autoincrement === $value) ? "AUTO_INCREMENT" : "";
-            $this->sql .= "`{$value['name']}` {$value['type']} {$null} {$increment} , ";
+            $increment = ($this->autoincrement == $value['name']) ? "AUTO_INCREMENT" : "";
+            if($value['lenght'] == 0)
+            {
+                switch (trim(mb_strtolower($value['type'])))
+                {
+                    case 'varchar':
+                        $this->sql .= "`{$value['name']}` {$value['type']}(255) {$null} {$increment} , ";
+                    break;
+                    case 'char':
+                        $this->sql .= "`{$value['name']}` {$value['type']}(255) {$null} {$increment} , ";
+                    break;
+                    case 'int':
+                        $this->sql .= "`{$value['name']}` {$value['type']}(11) {$null} {$increment} , ";
+                    break;
+                    default:
+                        $this->sql .= "`{$value['name']}` {$value['type']} {$null} {$increment} , ";
+                    break;
+                }
+            }
+            else
+                $this->sql .= "`{$value['name']}` {$value['type']}({$value['lenght']}) {$null} {$increment} , ";
         }
     }
 
