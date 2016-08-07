@@ -49,13 +49,20 @@ class UserController extends Controller
             Session::set('area', 1);
             Session::set('user', $user->getId());
             Session::set('username', $user->getUsername());
-            $this->to('book', 'list');
+            if($this->isAjax())
+                echo "ok";
+            else
+                $this->to('book', 'list');
+            exit();
         }
         else
         {
             $this->addVar('error', Language::get('login')['error']);
         }
-        $this->noTemplate()->view("/", "login")->display();
+        if($this->isAjax())
+            echo "fail";
+        else
+            $this->noTemplate()->view("/", "login")->display();
     }
 
     public function registerDeed()

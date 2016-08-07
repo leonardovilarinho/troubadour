@@ -10,10 +10,15 @@ class ErrorController extends Controller
 {
     public function failDeed()
     {
+        if($this->isAjax())
+            echo Errors::last();
+        else
+        {
+            if(Errors::link())
+                $this->addVar('link', Errors::link());
+            $this->error('Ooopss..', Errors::last());
+        }
         exit();
-        echo "oi";
-        if(Errors::link())
-            $this->addVar('link', Errors::link());
-        $this->error('Ooopss..', Errors::last());
+
     }
 }
