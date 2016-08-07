@@ -13,6 +13,7 @@
                 <h4 class="panel-title"><?php echo Language::get('login')['title'] ?></h4>
             </div>
             <form action="#" method="post">
+                <input value="<?php echo Session::get('token'); ?>" type="hidden" name="token" />
                 <div class="panel-body">
                     <label for="username"><?php echo Language::get('login')['username'] ?>:</label>
                     <input name="username" placeholder="<?php echo Language::get('login')['username'] ?>" required class="form-control" type="text" />

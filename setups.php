@@ -11,6 +11,8 @@ Settings::set('logs', true);
 Settings::set('deployment', true);
 Settings::set('ignoreErrors', false);
 
+Settings::set('allowsAjax', array('myIDAjaxAllowCrypt', "app2"));
+
 Settings::set("dbhost", "localhost");
 Settings::set("dbuser", "root");
 Settings::set("dbpassword", "sim-605");

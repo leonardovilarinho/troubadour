@@ -36,8 +36,7 @@ class Core
         if($this->defineAccess())
             $this->callLink();
         else
-            echo "oi1";
-            //Errors::display("Acesso Negado!");
+            Errors::display("Acesso Negado!");
     }
 
     private function disableUtil()
@@ -114,6 +113,7 @@ class Core
             $this->controller = ucfirst($model) . "Controller";
         }
 
+
         if(file_exists("controller/{$this->controller}.php"))
         {
             $this->importRels(Relationships::get('*'));
@@ -125,27 +125,33 @@ class Core
             require_once "controller" . "/{$this->controller}.php";
             $instance = new $this->controller();
 
+
             if(count($_POST))
             {
-                Saved::create();
-                $this->method = "{$this->method}Posted";
+                if($_POST['token'] === Session::get('token') or in_array($_POST['token'], Settings::get('allowsAjax')))
+                {
+                    Saved::create();
+                    $this->method = "{$this->method}Posted";
+                }
+                else
+                    Errors::display('Token inválido', DOMAIN);
             }
             else
+            {
+                Session::set('token', md5(crypt(time(), '$1$rasmusle$')));
                 $this->method = "{$this->method}Deed";
+            }
 
             if(method_exists($instance, $this->method))
             {
                 $instance->{$this->method}();
                 exit();
             }
-
             else
-                echo "oi2";
-                //Errors::display("Página não encontrada");
+                Errors::display("Página não encontrada");
         }
         else
-            echo "oi3";
-            //Errors::display("Página não encontrada");
+            Errors::display("Página não encontrada");
     }
 
     private function importRels($rel)
