@@ -215,7 +215,7 @@ abstract class Controller
      * 
      * @return bool - true foi ajax, false nao usou ajax
      */
-    protected function isAjax()
+    public function isAjax()
     {
         $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? $_SERVER['HTTP_X_REQUESTED_WITH'] : null;
         return (strtolower($isAjax) === 'xmlhttprequest');
