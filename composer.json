@@ -11,9 +11,9 @@
     ],
     "require" : {
         "php" : ">=5.4",
-        "legionlab/urban" : "*",
+        "legionlab/urban" : "1.0",
         "respect/validation" : "^1.1",
-        "legionlab/utils": "*"
+        "legionlab/utils": "1.0"
     },
     "autoload" : {
         "psr-0" : {
