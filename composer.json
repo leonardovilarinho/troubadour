@@ -15,14 +15,5 @@
         "legionlab/utils": "^1.0",
         "respect/validation" : "^1.1"
         
-    },
-    "autoload" : {
-        "psr-0" : {
-            "" : "source/"
-        }
-    },
-    "config" : {
-        "bin-dir" : "bin/",
-        "vendor-dir" : "third"
     }
 }
