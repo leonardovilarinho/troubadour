@@ -1,6 +1,6 @@
 {
     "name" : "legionlab/troubadour",
-    "description": "Framework of TCC",
+    "description": "Framework MVC",
     "type": "beta",
     "license": "MITS",
     "authors" : [
@@ -12,9 +12,8 @@
     "require" : {
         "php" : ">=5.4",
         "legionlab/urban" : "*",
+        "respect/validation" : "^1.1",
         "legionlab/utils": "*"
-    },
-    "require-dev" : {
     },
     "autoload" : {
         "psr-0" : {
