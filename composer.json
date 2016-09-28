@@ -14,5 +14,9 @@
         "legionlab/urban" : "^1.0",
         "legionlab/utils": "^1.0",
         "respect/validation" : "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "LegionLab\\Troubadour\\": ""
     }
 }
