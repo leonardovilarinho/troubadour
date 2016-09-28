@@ -11,8 +11,8 @@
     ],
     "require" : {
         "php" : ">=5.4",
-        "legionlab/urban" : "^1.0",
-        "legionlab/utils": "^1.0",
+        "legionlab/urban" : "^1.0.1",
+        "legionlab/utils": "^1.0.1",
         "respect/validation" : "^1.1"
     },
     "autoload": {
