@@ -1,15 +1,15 @@
 <?php
 
-namespace Llab\Troubadour\Control;
+namespace LegionLab\Troubadour\Control;
 
-use Llab\Troubadour\Collections\Session;
-use Llab\Troubadour\Collections\Settings;
-use Llab\Troubadour\Persistence\Database;
+use LegionLab\Troubadour\Collections\Session;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Persistence\Database;
 
 
 /**
  * Control Control
- * 
+ *
  * Created by PhpStorm.
  * User: Leonardo Vilarinho
  * Date: 02/07/2016
@@ -105,7 +105,7 @@ abstract class Controller extends Template
 
     /**
      * Vai para outra pagina.
-     * 
+     *
      * @param $controller - controlador a ser chamado
      * @param $method - metodo a ser chamado
      * @param array $attributes - atributos do link

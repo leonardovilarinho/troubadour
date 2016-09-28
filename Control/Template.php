@@ -1,8 +1,8 @@
 <?php
 
-namespace Llab\Troubadour\Control;
-use Llab\Troubadour\Collections\Settings;
-use Llab\Urban\UrbanTemplate;
+namespace LegionLab\Troubadour\Control;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Urban\UrbanTemplate;
 
 /**
  * Control Template

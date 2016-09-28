@@ -1,6 +1,6 @@
 <?php
 
-namespace Llab\Troubadour\Persistence;
+namespace LegionLab\Troubadour\Persistence;
 
 /**
  * Created by PhpStorm.

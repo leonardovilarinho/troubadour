@@ -1,6 +1,6 @@
 <?php
 
-namespace Llab\Troubadour\Collections;
+namespace LegionLab\Troubadour\Collections;
 
 /**
  * Control Session

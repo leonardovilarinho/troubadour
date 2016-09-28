@@ -1,6 +1,6 @@
 <?php
 
-namespace Llab\Troubadour\Routes;
+namespace LegionLab\Troubadour\Routes;
 
 /**
  * Control Alias

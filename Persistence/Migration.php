@@ -1,6 +1,6 @@
 <?php
 
-namespace Llab\Troubadour\Persistence;
+namespace LegionLab\Troubadour\Persistence;
 
 class Migration
 {
@@ -142,8 +142,8 @@ class Migration
                                 );
                             }
 
-							$len = (isset(explode("(", $table[array_search($attr, $fields)]['Type'])[1])) ? explode("(", $table[array_search($attr, $fields)]['Type'])[1] : ''; 
-							
+							$len = (isset(explode("(", $table[array_search($attr, $fields)]['Type'])[1])) ? explode("(", $table[array_search($attr, $fields)]['Type'])[1] : '';
+
                             if(mb_substr($len, 0, -1) != str_replace('(', '', str_replace(')', '', $lenght))) {
                                 $d_model->sql(
                                     "ALTER TABLE `{$this->name}` CHANGE `{$attr}` `{$attr}` {$value['type']}{$lenght} {$null} {$default} {$increment};"

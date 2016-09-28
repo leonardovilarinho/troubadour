@@ -1,10 +1,10 @@
 <?php
 
-namespace Llab\Troubadour\Persistence;
+namespace LegionLab\Troubadour\Persistence;
 
-use Llab\Troubadour\Collections\Session;
-use Llab\Troubadour\Collections\Settings;
-use Llab\Troubadour\Development\Log;
+use LegionLab\Troubadour\Collections\Session;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Development\Log;
 
 /**
  * Created by PhpStorm.

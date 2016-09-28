@@ -1,13 +1,13 @@
 <?php
 
-namespace Llab\Troubadour\Persistence;
+namespace LegionLab\Troubadour\Persistence;
 
-use Llab\Troubadour\Collections\Settings;
-use Llab\Troubadour\Development\Log;
-use Llab\Troubadour\Collections\Session;
-use Llab\Troubadour\Collections\Saved;
-use Llab\Utils\Criteria;
-use Llab\Utils\Pager;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Development\Log;
+use LegionLab\Troubadour\Collections\Session;
+use LegionLab\Troubadour\Collections\Saved;
+use LegionLab\Utils\Criteria;
+use LegionLab\Utils\Pager;
 
 /**
  * Control Database
@@ -431,7 +431,7 @@ abstract class Database
     private function clear()
     {
         $attr = get_class_vars(get_class($this->object));
-        $attr2 = get_class_vars('\\Llab\\Troubadour\\Persistence\\Database');
+        $attr2 = get_class_vars('\\LegionLab\\Troubadour\\Persistence\\Database');
 
 
         foreach ($attr as $key => $value)

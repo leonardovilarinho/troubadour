@@ -1,6 +1,6 @@
 <?php
 
-namespace Llab\Troubadour\Routes;
+namespace LegionLab\Troubadour\Routes;
 
 /**
  * Control Access
@@ -132,5 +132,5 @@ abstract class Access
 
         return false;
     }
-    
+
 }

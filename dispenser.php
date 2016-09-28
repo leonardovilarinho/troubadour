@@ -6,7 +6,7 @@
  * Time: 22:05
  */
 
-use Llab\Troubadour\Routes\Alias;
+use LegionLab\Troubadour\Routes\Alias;
 
 /**
  * Resgata parametros da URL, separa controller de method, verificando também se o link

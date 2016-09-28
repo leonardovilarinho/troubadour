@@ -1,9 +1,9 @@
 <?php
 
-namespace Llab\Troubadour\Control;
+namespace LegionLab\Troubadour\Control;
 
-use Llab\Troubadour\Collections\Settings;
-use Llab\Troubadour\Collections\Session;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Collections\Session;
 
 /**
  * Control Errors

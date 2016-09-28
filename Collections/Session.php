@@ -1,6 +1,6 @@
 <?php
 
-namespace Llab\Troubadour\Collections;
+namespace LegionLab\Troubadour\Collections;
 
 /**
  * Control Session
@@ -49,7 +49,7 @@ abstract class Session
 
     /**
      * Cria uma variavel de sessao
-     * 
+     *
      * @param $key - nome da variavel
      * @param $value - valor da variavel
      */

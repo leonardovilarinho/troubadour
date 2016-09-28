@@ -1,9 +1,9 @@
 <?php
 
-namespace Llab\Troubadour\Development;
+namespace LegionLab\Troubadour\Development;
 
-use Llab\Troubadour\Collections\Settings;
-use Llab\Troubadour\Control\Errors;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Control\Errors;
 
 /**
  * Control Log

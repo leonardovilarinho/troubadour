@@ -1,14 +1,14 @@
 <?php
 
-namespace Llab\Troubadour;
+namespace LegionLab\Troubadour;
 
-use Llab\Troubadour\Control\Errors;
-use Llab\Troubadour\Collections\Session;
-use Llab\Troubadour\Collections\Settings;
-use Llab\Troubadour\Development\Security;
-use Llab\Troubadour\Routes\Alias;
-use Llab\Troubadour\Routes\Access;
-use Llab\Troubadour\Collections\Saved;
+use LegionLab\Troubadour\Control\Errors;
+use LegionLab\Troubadour\Collections\Session;
+use LegionLab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Development\Security;
+use LegionLab\Troubadour\Routes\Alias;
+use LegionLab\Troubadour\Routes\Access;
+use LegionLab\Troubadour\Collections\Saved;
 
 /**
  * Created by PhpStorm.

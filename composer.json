@@ -1,7 +1,7 @@
 {
     "name" : "legionlab/troubadour",
     "description": "Framework MVC",
-    "type": "beta",
+    "type": "Framework",
     "license": "MITS",
     "authors" : [
         {
@@ -14,6 +14,5 @@
         "legionlab/urban" : "^1.0",
         "legionlab/utils": "^1.0",
         "respect/validation" : "^1.1"
-        
     }
 }

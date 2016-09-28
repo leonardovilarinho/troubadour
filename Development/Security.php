@@ -1,8 +1,8 @@
 <?php
 
-namespace Llab\Troubadour\Development;
+namespace LegionLab\Troubadour\Development;
 
-use Llab\Troubadour\Collections\Settings;
+use LegionLab\Troubadour\Collections\Settings;
 
 /**
  * Control Security
