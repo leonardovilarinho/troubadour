@@ -1,0 +1,7 @@
+<div class="text-center text-danger">
+    <h4>
+        [- error -]
+    </h4>
+    <a href="[- link -]" class="btn btn-primary"><<<</a>
+
+</div>

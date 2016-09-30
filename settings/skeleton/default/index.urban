@@ -1,0 +1,15 @@
+[use \LegionLab\Utils]
+[use \LegionLab\Troubadour\Collections]
+
+[- header -]
+[- scripts -]
+
+<section class="body" >
+
+    [+ menu.urban +]
+
+    <article class="col-md-9 right-side" style=" overflow-y: auto" >
+        [+ content +]
+    </article>
+
+</section>

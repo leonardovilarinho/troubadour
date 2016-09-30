@@ -1,0 +1,10 @@
+<article class="col-md-2 left-side"  style=" color: #fff; background-color: #2d2d2d;  opacity: 0.85;">
+    <br>
+    <div class="text-center">
+        <p>
+            <a href='[- domain -]/language/change/1'>PT</a>
+            <a href='[- domain -]/language/change/2'>EN</a>
+        </p>
+        <h3><a href="[- domain -]">[- title -]</a></h3>
+    </div>
+</article>

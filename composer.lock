@@ -1,0 +1,246 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "63ebb1e9b49798126e1cdc49d623246f",
+    "content-hash": "5245f750af05916312588574031baa6b",
+    "packages": [
+        {
+            "name": "legionlab/troubadour-kernel",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/legionlab/tkernel.git",
+                "reference": "9ce614384f8f274c6b85a3b6375354c02effcef5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/legionlab/tkernel/zipball/9ce614384f8f274c6b85a3b6375354c02effcef5",
+                "reference": "9ce614384f8f274c6b85a3b6375354c02effcef5",
+                "shasum": ""
+            },
+            "require": {
+                "legionlab/urban": "^1.0",
+                "php": ">=5.4"
+            },
+            "type": "beta",
+            "autoload": {
+                "psr-4": {
+                    "LegionLab\\Troubadour\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MITS"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Vilarinho",
+                    "email": "leonardo-i@outlook.com"
+                }
+            ],
+            "description": "Framework of TCC",
+            "time": "2016-09-30 01:10:33"
+        },
+        {
+            "name": "legionlab/urban",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/legionlab/urban.git",
+                "reference": "f896aa3cbc201ad5808719710ee0136fc2cb4920"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/legionlab/urban/zipball/f896aa3cbc201ad5808719710ee0136fc2cb4920",
+                "reference": "f896aa3cbc201ad5808719710ee0136fc2cb4920",
+                "shasum": ""
+            },
+            "type": "beta",
+            "autoload": {
+                "psr-4": {
+                    "LegionLab\\Urban\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MITS"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Vilarinho",
+                    "email": "leonardo-i@outlook.com"
+                }
+            ],
+            "description": "Engine template Simple",
+            "time": "2016-09-28 03:38:14"
+        },
+        {
+            "name": "legionlab/utils",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/legionlab/utils.git",
+                "reference": "1cb99d9902b99973094d62a12c23cb628e4bcf5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/legionlab/utils/zipball/1cb99d9902b99973094d62a12c23cb628e4bcf5e",
+                "reference": "1cb99d9902b99973094d62a12c23cb628e4bcf5e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LegionLab\\Utils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MITS"
+            ],
+            "authors": [
+                {
+                    "name": "LegionLab",
+                    "email": "leonardo-i@outlook.com"
+                }
+            ],
+            "description": "Utils from Troubadour Framework",
+            "time": "2016-09-30 00:10:40"
+        },
+        {
+            "name": "respect/validation",
+            "version": "1.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Respect/Validation.git",
+                "reference": "e457f19dbd27370547ad0409f662d34ebb32e9a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/e457f19dbd27370547ad0409f662d34ebb32e9a9",
+                "reference": "e457f19dbd27370547ad0409f662d34ebb32e9a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/polyfill-mbstring": "^1.2"
+            },
+            "require-dev": {
+                "egulias/email-validator": "~1.2",
+                "malkusch/bav": "~1.0",
+                "mikey179/vfsstream": "^1.5",
+                "phpunit/phpunit": "~4.0",
+                "symfony/validator": "~2.6.9",
+                "zendframework/zend-validator": "~2.3"
+            },
+            "suggest": {
+                "egulias/email-validator": "Strict (RFC compliant) email validation",
+                "ext-bcmath": "Arbitrary Precision Mathematics",
+                "ext-mbstring": "Multibyte String Functions",
+                "fabpot/php-cs-fixer": "Fix PSR2 and other coding style issues",
+                "malkusch/bav": "German bank account validation",
+                "symfony/validator": "Use Symfony validator through Respect\\Validation",
+                "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Respect\\Validation\\": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD Style"
+            ],
+            "authors": [
+                {
+                    "name": "Respect/Validation Contributors",
+                    "homepage": "https://github.com/Respect/Validation/graphs/contributors"
+                }
+            ],
+            "description": "The most awesome validation engine ever created for PHP",
+            "homepage": "http://respect.github.io/Validation/",
+            "keywords": [
+                "respect",
+                "validation",
+                "validator"
+            ],
+            "time": "2016-09-20 06:44:39"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "dff51f72b0706335131b00a7f49606168c582594"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
+                "reference": "dff51f72b0706335131b00a7f49606168c582594",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-05-18 14:26:46"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

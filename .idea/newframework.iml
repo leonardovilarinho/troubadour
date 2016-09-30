@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/legionlab/troubadour-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/legionlab/urban" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/legionlab/utils" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/respect/validation" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/legionlab/troubadour-kernel" />
+          <root url="file://$MODULE_DIR$/vendor/legionlab/urban" />
+          <root url="file://$MODULE_DIR$/vendor/legionlab/utils" />
+          <root url="file://$MODULE_DIR$/vendor/respect/validation" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/legionlab/troubadour-kernel" />
+          <root url="file://$MODULE_DIR$/vendor/legionlab/urban" />
+          <root url="file://$MODULE_DIR$/vendor/legionlab/utils" />
+          <root url="file://$MODULE_DIR$/vendor/respect/validation" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

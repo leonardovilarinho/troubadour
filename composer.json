@@ -1,23 +1,22 @@
 {
-    "name" : "legionlab/troubadour",
-    "description": "Framework MVC",
-    "type": "Framework",
+    "name": "legionlab/troubadour",
+    "description": "Troubadour PHP Framework",
+    "type": "framework",
+    "require": {
+        "legionlab/troubadour-kernel": "1.4",
+        "legionlab/utils": "^1.0",
+	"respect/validation" : "^1.1"
+    },
     "license": "MITS",
-    "authors" : [
+    "authors": [
         {
-          "name" : "Leonardo Vilarinho",
-          "email" : "leonardo-i@outlook.com"
+            "name": "LegionLab",
+            "email": "leonardo-i@outlook.com"
         }
     ],
-    "require" : {
-        "php" : ">=5.4",
-        "legionlab/urban" : "^1.0.1",
-        "legionlab/utils": "^1.0.1",
-        "respect/validation" : "^1.1"
-    },
     "autoload": {
-        "psr-4": {
-            "LegionLab\\Troubadour\\": ""
-        }
+        "psr-0": {
+	    "": "source/"
+	}
     }
 }
