@@ -3,8 +3,8 @@
     "description": "Troubadour PHP Framework",
     "type": "framework",
     "require": {
-        "legionlab/troubadour-kernel": "^1.*",
-        "legionlab/utils": "^1.*",
+        "legionlab/troubadour-kernel": "^1.7",
+        "legionlab/utils": "^1.1",
 	"respect/validation" : "^1.1"
     },
     "license": "MITS",
