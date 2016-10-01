@@ -9,7 +9,7 @@ use LegionLab\Troubadour\Routes\Access;
 use LegionLab\Utils\Language;
 
 // Start default language from browser
-Language::init();
+Language::init(ROOT.'settings/languages/');
 
 /*
 * Set access definitions, routes public and privates by user type

@@ -19,9 +19,9 @@ class LanguageController extends Controller
     {
         $this->param(0, function($success) {
             if($success == 1)
-                Language::set('pt-br');
+                Language::set('pt');
             else if($success == 2)
-                Language::set('en-us');
+                Language::set('en');
             else {
                 Errors::display("Linguagem não encontrada");
                 exit();
