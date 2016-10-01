@@ -1,0 +1,3 @@
+[home]
+    hello = "Hello, new Troubadour!";
+    e-hellor = "Whooops, has an error :(";
