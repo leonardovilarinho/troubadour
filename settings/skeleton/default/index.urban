@@ -6,7 +6,7 @@
 
 <section class="body" >
 
-    [+ menu.urban +]
+    [+ settings/skeleton/default/menu.urban +]
 
     <article class="col-md-9 right-side" style=" overflow-y: auto" >
         [+ content +]
