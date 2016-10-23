@@ -13,3 +13,5 @@ use LegionLab\Troubadour\Routes\Alias;
 * Example:
 * Alias::set('Account', 'list', 'c'); | The method listDeed of AccountController can be accessed by 'c'
 */
+
+Alias::set('Error', 'fail', 'error');
