@@ -5,7 +5,7 @@
      composer create-project --prefer-dist legionlab/troubadour nome-do-projeto
 
 - Modo 2:
-     composer global require "troubadour/installer"
+     composer global require "troubadour/installer" &&
      troubadour new nome-do-projeto
 
 - Instalando CRUD exemplo:
